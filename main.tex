@@ -1,0 +1,161 @@
+\documentclass[12pt, letterpaper]{report}
+
+%-----------------------------------------------------------------------
+% Packages
+%-----------------------------------------------------------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{titlesec}        % must come BEFORE hyperref
+\usepackage{mdframed}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{emptypage}
+\usepackage{microtype}
+\usepackage[version=4]{mhchem}   % chemical formulas: \ce{H2O}, \ce{CCSD(T)}
+\usepackage{siunitx}             % units: \SI{2.75}{\angstrom}
+\usepackage[backend=biber,
+            style=numeric,
+            sorting=none,
+            backref=true,
+            block=ragged]{biblatex}
+\addbibresource{references.bib}
+\usepackage{hyperref}        % MUST be loaded last
+
+%-----------------------------------------------------------------------
+% Typography
+%-----------------------------------------------------------------------
+\onehalfspacing
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+
+%-----------------------------------------------------------------------
+% Headers
+%-----------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\leftmark}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+%-----------------------------------------------------------------------
+% Hyperref setup
+%-----------------------------------------------------------------------
+\hypersetup{
+  hypertexnames = true,
+  colorlinks    = true,
+  linkcolor     = blue,
+  citecolor     = black,
+  urlcolor      = blue,
+  pdftitle      = {BSSE in Water Clusters: Dimer and Trimer Analysis},
+  pdfauthor     = {}
+}
+
+%-----------------------------------------------------------------------
+% Custom environments
+%-----------------------------------------------------------------------
+\newmdenv[
+  linewidth=1pt,
+  linecolor=black,
+  backgroundcolor=gray!8,
+  innertopmargin=10pt,
+  innerbottommargin=10pt,
+  skipabove=12pt,
+  skipbelow=12pt
+]{finding_box}
+
+%-----------------------------------------------------------------------
+% Custom commands — BSSE notation
+%-----------------------------------------------------------------------
+% Interaction energies
+\newcommand{\dE}[2]{\Delta E_{#1}(#2)}
+% BSSE (theta)
+\newcommand{\bsse}[2]{\Theta_{#1}(#2)}
+% Generic fragment energy
+\newcommand{\Efrag}[2]{E_{#1}(#2)}
+% Two-body BSSE shorthand
+\newcommand{\tbsse}[1]{\theta^{(2)}_{#1}}
+% Three-body BSSE shorthand
+\newcommand{\thbsse}{\theta^{(3)}_{IJK}}
+
+%-----------------------------------------------------------------------
+% Document
+%-----------------------------------------------------------------------
+\begin{document}
+
+%--- Title page ---------------------------------------------------------
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\LARGE\bfseries Basis Set Superposition Error in \ce{H2O} Clusters:\\
+  Dimer and Trimer Analysis\par}
+  \vspace{2cm}
+  {\large Iowa State University\par}
+  \vspace{0.5cm}
+  {\large \texttt{rmrresearch/bsse\_db} \textbar{} Branch: \texttt{fcuantico}\par}
+  \vspace{1cm}
+  {\large \today\par}
+  \vfill
+  {\normalsize First draft --- internal use only}
+\end{titlepage}
+
+%--- Table of contents --------------------------------------------------
+\tableofcontents
+\clearpage
+
+%-----------------------------------------------------------------------
+% Chapter 1 — Introduction
+%-----------------------------------------------------------------------
+\chapter{Introduction}
+\input{sections/intro}
+
+%-----------------------------------------------------------------------
+% Chapter 2 — Theory
+%-----------------------------------------------------------------------
+\chapter{Theoretical Background}
+\input{sections/theory}
+
+%-----------------------------------------------------------------------
+% Chapter 3 — Dimer
+%-----------------------------------------------------------------------
+\chapter{\ce{H2O} Dimer: BSSE Analysis}
+\input{sections/dimer}
+
+%-----------------------------------------------------------------------
+% Chapter 4 — Trimer: Setup and Infrastructure
+%-----------------------------------------------------------------------
+\chapter{\ce{H2O} Trimer: Data Pipeline}
+\input{sections/trimer_setup}
+
+%-----------------------------------------------------------------------
+% Chapter 5 — Trimer: BSSE Decomposition
+%-----------------------------------------------------------------------
+\chapter{\ce{H2O} Trimer: BSSE Decomposition}
+\input{sections/trimer_bsse}
+
+%-----------------------------------------------------------------------
+% Chapter 6 — Trimer: BSSE vs Interaction Energy
+%-----------------------------------------------------------------------
+\chapter{\ce{H2O} Trimer: BSSE and Interaction Energy}
+\input{sections/trimer_interaction}
+
+%-----------------------------------------------------------------------
+% Chapter 7 — Next Steps
+%-----------------------------------------------------------------------
+\chapter{Next Steps and Outlook}
+\input{sections/next_steps}
+
+%-----------------------------------------------------------------------
+% References
+%-----------------------------------------------------------------------
+\printbibliography[heading=bibintoc, title={References}]
+
+\end{document}
