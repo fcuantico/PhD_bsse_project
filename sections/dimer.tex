@@ -1,0 +1,219 @@
+% dimer.tex — Chapter 3: H2O Dimer BSSE Analysis
+% Project: rmrresearch/bsse_db | Branch: fcuantico
+
+% -----------------------------------------------------------------------
+\section{Overview}
+% -----------------------------------------------------------------------
+
+The \ce{H2O} dimer serves as the foundational case for this study. Two
+complementary sampling strategies were employed to characterize how BSSE
+depends on the relative geometry of the two monomers: a
+\textit{translational scan}, in which monomer B is displaced along a
+three-dimensional grid while monomer A remains fixed, and a
+\textit{rotational--radial scan}, in which the Euler angles
+$(\alpha, \beta, \gamma)$ of monomer B are sampled randomly while the
+O--O separation $R$ is varied independently. All calculations were
+performed at the SCF, MP2, and CCSD(T) levels using the aug-cc-pVDZ
+basis set~\cite{dunning1989,kendall1992} with the NWChem quantum
+chemistry package~\cite{nwchem2020}.
+
+The BSSE for each dimer configuration is computed as:
+\begin{equation}
+    \Theta_{AB}(AB) = \Delta E_{AB}(A, B, AB) - \Delta E_{AB}(AB)
+    \label{eq:dimer_bsse}
+\end{equation}
+where $\Delta E_{AB}(A, B, AB) = E_{AB}(AB) - E_A(A) - E_B(B)$ is the
+uncorrected interaction energy and $\Delta E_{AB}(AB) = E_{AB}(AB) -
+E_A(AB) - E_B(AB)$ is the Boys--Bernardi counterpoise-corrected
+interaction energy~\cite{boys1970}. Throughout this work, energies are
+reported in Hartree and distances in \AA.
+
+% -----------------------------------------------------------------------
+\section{Experimental Design}
+\label{sec:dimer_design}
+% -----------------------------------------------------------------------
+
+\subsection{Monomer Geometry}
+
+Both monomers use a rigid \ce{H2O} geometry. Monomer A is placed at the
+origin with its oxygen atom and two hydrogen atoms fixed in the $xy$
+plane for all calculations. All coordinates are given in \AA, consistent
+with the NWChem default convention.
+
+\subsection{Translational Scan}
+
+In the translational scan, the O--O displacement vector
+$\mathbf{r} = \mathbf{r}_2 - \mathbf{r}_1$ (from the oxygen of monomer
+A to the oxygen of monomer B) is varied in increments of
+\SI{0.25}{\angstrom}. The scan is organized into three families of
+two-dimensional slices:
+\begin{itemize}
+    \item Fixed $x$: contour over $(y, z)$
+    \item Fixed $y$: contour over $(x, z)$
+    \item Fixed $z$: contour over $(x, y)$
+\end{itemize}
+Given the sampling model, only the
+fixed-$y$ slices at $y = 2.0$, $2.25$, $2.50$, and
+\SI{2.75}{\angstrom} form complete $7 \times 7$ grids (49 points each)
+and are used for contour analysis. The fixed-$x$ and fixed-$z$ families
+have incomplete grids and are excluded from the contour plots.
+
+\subsection{Rotational--Radial Scan}
+
+In the rotational--radial scan, the Euler angles $(\alpha, \beta,
+\gamma)$ of monomer B are sampled randomly, producing 64 unique
+orientations. For each orientation, the O--O separation $R$ is varied
+independently. A total of 288 data points per method were collected.
+Of the 64 orientations, 32 have at least 5 distinct $R$ values and
+are used for plotting BSSE vs $R$ curves.
+
+% -----------------------------------------------------------------------
+\section{Results: Translational Scan}
+% -----------------------------------------------------------------------
+
+Figure~\ref{fig:trnl_contours} shows the BSSE contour plots for the
+fixed-$y$ slices at $y = 2.50$ and \SI{2.75}{\angstrom} for all three
+levels of theory. Each panel shows BSSE as a function of the in-plane
+coordinates $(x, z)$.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.50_SCF.png}
+        \caption{SCF, $y = \SI{2.50}{\angstrom}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.50_MP2.png}
+        \caption{MP2 corr., $y = \SI{2.50}{\angstrom}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.50_CCSD_T.png}
+        \caption{CCSD(T) corr., $y = \SI{2.50}{\angstrom}$}
+    \end{subfigure}
+
+    \vspace{0.8em}
+
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.75_SCF.png}
+        \caption{SCF, $y = \SI{2.75}{\angstrom}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.75_MP2.png}
+        \caption{MP2 corr., $y = \SI{2.75}{\angstrom}$}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.32\textwidth}
+        \includegraphics[width=\textwidth]{figures/dimer/H2O_dimer/H2O_trnl_contour_2.75_CCSD_T.png}
+        \caption{CCSD(T) corr., $y = \SI{2.75}{\angstrom}$}
+    \end{subfigure}
+
+    \caption{BSSE contour plots for the \ce{H2O} dimer translational
+    scan at fixed $y = 2.50$ and \SI{2.75}{\angstrom}. Axes correspond
+    to the in-plane O--O displacement components $(x, z)$ in \AA.
+    Contour levels represent the BSSE in Hartree. The MP2 and CCSD(T)
+    labels refer to the correlation energy components relative to SCF
+    and MP2, respectively. The nearly circular contour arcs indicate
+    that BSSE depends primarily on the O--O separation $R$ with weak
+    orientation dependence.}
+    \label{fig:trnl_contours}
+\end{figure}
+
+The contour plots reveal nearly circular arcs centered on the origin,
+indicating that BSSE is predominantly a function of the O--O distance
+$R = |\mathbf{r}|$ with only weak dependence on the direction of the
+displacement vector. This observation holds across all three levels of
+theory and all four fixed-$y$ slices.
+
+% -----------------------------------------------------------------------
+\section{Results: Rotational--Radial Scan}
+% -----------------------------------------------------------------------
+
+Figure~\ref{fig:rot_bsse_vs_R} shows $|\text{BSSE}|$ as a function of
+$R$ for 9 representative orientations, with SCF, MP2 correlation, and
+CCSD(T) correlation components overlaid on each panel.
+
+Several observations are consistent across all 9 orientations:
+
+\begin{enumerate}
+    \item \textbf{Monotonic decay with $R$.} All three components
+    decrease monotonically as the O--O separation increases,
+    approaching zero at large $R$.
+
+    \item \textbf{Dominance of the MP2 correlation component.} The MP2
+    correlation contribution to BSSE is the largest of the three
+    components across all orientations and distances sampled. 
+    % At the
+    % SCF level, only the occupied molecular orbitals contribute to the
+    % electron density, and the basis set incompleteness error arises
+    % from the inability of the monomer's own basis to describe these
+    % occupied orbitals in the field of the partner. At the MP2 level,
+    % the correlation energy is computed through excitations into virtual
+    % orbitals, which are typically more diffuse and more sensitive to
+    % basis set incompleteness than the occupied orbitals. As a result,
+    % the correlated wavefunction benefits more from borrowing the
+    % partner's basis functions --- the ghost atoms effectively provide
+    % additional virtual space that the monomer's own basis lacks. This
+    % amplification of BSSE by electron correlation is a well-known
+    % phenomenon and is one of the primary motivations for using
+    % augmented basis sets such as aug-cc-pVDZ in BSSE studies.
+
+    \item \textbf{Small CCSD(T) increment.} The CCSD(T) correlation
+    component is consistently small relative to both SCF and MP2
+    contributions.
+    % suggesting that higher-order correlation effects
+    % beyond MP2 contribute minimally to the BSSE.
+
+    \item \textbf{Weak orientation dependence.} The shape and magnitude
+    of the BSSE curves are consistent across different
+    $(\alpha, \beta, \gamma)$ values, in agreement with the nearly
+    circular contour arcs observed in the translational scan.
+\end{enumerate}
+
+\vspace{0.25cm}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=1.0\textwidth]{figures/dimer/H2O_dimer/H2O_rot_vs_R_SCFMP2CCSD_T.png}
+    \caption{$|\text{BSSE}|$ vs O--O separation $R$ for 9 representative
+    rotational orientations of the \ce{H2O} dimer at the aug-cc-pVDZ
+    level. Each panel corresponds to a distinct set of Euler angles
+    $(\alpha, \beta, \gamma)$ as labeled. Blue circles: SCF
+    contribution; orange squares: MP2 correlation component
+    ($E_\text{MP2} - E_\text{SCF}$); green triangles: CCSD(T)
+    correlation component ($E_{\text{CCSD(T)}} - E_\text{MP2}$).
+    All three components decay monotonically with $R$ and show
+    consistent behavior across orientations, confirming weak
+    orientation dependence of dimer BSSE.}
+    \label{fig:rot_bsse_vs_R}
+\end{figure}
+
+\clearpage
+
+% -----------------------------------------------------------------------
+\section{Key Findings}
+\label{sec:dimer_findings}
+% -----------------------------------------------------------------------
+
+\begin{finding_box}
+\textbf{Dimer BSSE is primarily a function of O--O distance.}
+Both the translational contour plots and the rotational--radial scan
+confirm that BSSE in the \ce{H2O} dimer depends weakly on the relative
+orientation of the monomers and is governed primarily by the O--O
+separation $R$. 
+% This result motivates the hypothesis that a simple
+% distance-based threshold could be used to identify configurations where
+% BSSE corrections are negligible.
+\end{finding_box}
+
+\begin{finding_box}
+\textbf{MP2 correlation dominates the dimer BSSE.}
+Decomposing the total BSSE into SCF, MP2 correlation, and CCSD(T)
+correlation components reveals that the MP2 contribution is the
+largest at all sampled distances and orientations. The CCSD(T)
+correction beyond MP2 is small. 
+% This energy decomposition hierarchy
+% provides essential context for the trimer analysis presented in
+% Chapters~\ref{ch:trimer_bsse} and~\ref{ch:trimer_interaction}.
+\end{finding_box}
